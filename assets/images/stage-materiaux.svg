@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" role="img" aria-labelledby="title desc">
+  <title id="title">Stage matériaux biosourcés</title>
+  <desc id="desc">Illustration temporaire de matériaux naturels utilisés en stage.</desc>
+  <rect width="960" height="600" fill="#eef2eb"/>
+  <rect x="116" y="118" width="250" height="330" rx="10" fill="#d8c7af"/>
+  <rect x="394" y="118" width="188" height="330" rx="10" fill="#b86b4f" opacity=".85"/>
+  <rect x="610" y="118" width="234" height="330" rx="10" fill="#52684f"/>
+  <path d="M148 182h184M148 246h184M148 310h184M148 374h184" stroke="#8d7a66" stroke-width="18" stroke-linecap="round"/>
+  <path d="M426 196h124M426 262h124M426 328h124" stroke="#fbfaf6" stroke-width="18" stroke-linecap="round" opacity=".8"/>
+  <path d="M650 180c44 60 100 60 154 0M650 262c44 60 100 60 154 0M650 344c44 60 100 60 154 0" fill="none" stroke="#fbfaf6" stroke-width="16" stroke-linecap="round" opacity=".8"/>
+  <text x="480" y="538" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#5b4638">Stages matériaux biosourcés</text>
+</svg>

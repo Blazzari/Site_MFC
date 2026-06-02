@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1125" role="img" aria-labelledby="title desc">
+  <title id="title">Maison ancienne en pierre</title>
+  <desc id="desc">Illustration temporaire d'une maison ancienne en pierre avec matériaux naturels.</desc>
+  <rect width="900" height="1125" fill="#eee7dc"/>
+  <rect x="84" y="124" width="732" height="876" rx="18" fill="#fbfaf6"/>
+  <path d="M170 502 450 274l280 228v380H170z" fill="#d8c7af"/>
+  <path d="M132 515 450 255l318 260" fill="none" stroke="#5b4638" stroke-width="34" stroke-linecap="round"/>
+  <rect x="247" y="607" width="122" height="275" fill="#52684f"/>
+  <rect x="462" y="590" width="193" height="142" fill="#fbfaf6" stroke="#8d7a66" stroke-width="16"/>
+  <path d="M238 500h426M224 566h452M224 794h452M390 654h286" stroke="#8d7a66" stroke-width="14" stroke-linecap="round" opacity=".6"/>
+  <circle cx="690" cy="220" r="68" fill="#b86b4f" opacity=".82"/>
+  <path d="M118 916c142-54 263-59 363-14 101 45 199 42 301-8" fill="none" stroke="#52684f" stroke-width="26" stroke-linecap="round"/>
+  <text x="450" y="1046" text-anchor="middle" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#5b4638">Visuel temporaire</text>
+</svg>
