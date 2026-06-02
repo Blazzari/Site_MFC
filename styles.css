@@ -1,7 +1,7 @@
 :root {
   --color-ink: #26241f;
   --color-muted: #6d655a;
-  --color-paper: #fbfaf6;
+  --color-paper: #f8f6f0;
   --color-surface: #ffffff;
   --color-stone: #eee7dc;
   --color-clay: #b86b4f;
@@ -34,7 +34,7 @@ html {
 body {
   margin: 0;
   background:
-    linear-gradient(180deg, rgba(238, 231, 220, 0.76) 0, rgba(251, 250, 246, 0) 520px),
+    linear-gradient(180deg, rgba(238, 231, 220, 0.64) 0, rgba(248, 246, 240, 0) 520px),
     var(--color-paper);
   color: var(--color-ink);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -105,49 +105,29 @@ p {
   align-items: center;
   justify-content: space-between;
   gap: var(--space-lg);
-  width: min(100% - 2rem, var(--content-width));
-  margin: var(--space-md) auto 0;
-  padding: 0.7rem;
-  background: rgba(251, 250, 246, 0.88);
-  border: 1px solid rgba(222, 212, 197, 0.84);
-  border-radius: var(--radius-card);
-  box-shadow: 0 10px 30px rgba(54, 45, 35, 0.06);
+  width: 100%;
+  margin: 0;
+  padding: 0.78rem max(1rem, calc((100vw - var(--content-width)) / 2));
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid rgba(222, 212, 197, 0.9);
+  box-shadow: 0 8px 24px rgba(54, 45, 35, 0.06);
   backdrop-filter: blur(18px);
 }
 
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-sm);
   text-decoration: none;
 }
 
 .brand-mark {
-  display: grid;
-  place-items: center;
-  width: 2.75rem;
-  height: 2.75rem;
+  width: 5.6rem;
+  height: 4.6rem;
   flex: 0 0 auto;
-  background: var(--color-moss);
-  color: #fff;
-  border-radius: var(--radius-small);
-  font-size: 0.78rem;
-  font-weight: 800;
-}
-
-.brand-name,
-.brand-place {
-  display: block;
-}
-
-.brand-name {
-  font-weight: 800;
-  line-height: 1.2;
-}
-
-.brand-place {
-  color: var(--color-muted);
-  font-size: 0.86rem;
+  object-fit: contain;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .main-nav,
@@ -187,7 +167,7 @@ p {
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 1.04fr) minmax(320px, 0.72fr);
+  grid-template-columns: minmax(0, 0.92fr) minmax(360px, 0.9fr);
   align-items: center;
   gap: clamp(2rem, 5vw, 5rem);
   min-height: calc(100vh - 6rem);
@@ -276,29 +256,38 @@ p {
 }
 
 .hero-media {
+  position: relative;
   margin: 0;
 }
 
-.hero-media img,
-.feature-card img,
-.photo-grid img {
+.feature-card img {
   width: 100%;
   background: var(--color-stone);
-  border: 1px solid var(--color-line);
+  border: 1px solid rgba(222, 212, 197, 0.8);
   border-radius: var(--radius-card);
   object-fit: cover;
 }
 
 .hero-media img {
+  width: 100%;
   aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: var(--radius-card);
   box-shadow: var(--shadow-soft);
 }
 
 .hero-media figcaption {
-  max-width: 32rem;
-  margin-top: var(--space-sm);
-  color: var(--color-muted);
+  position: absolute;
+  right: var(--space-md);
+  bottom: var(--space-md);
+  max-width: 23rem;
+  margin: 0;
+  padding: 0.72rem 0.85rem;
+  background: rgba(38, 36, 31, 0.78);
+  border-radius: var(--radius-small);
+  color: #fff;
   font-size: 0.94rem;
+  backdrop-filter: blur(10px);
 }
 
 .quick-contact {
@@ -312,8 +301,11 @@ p {
 
 .quick-contact h2,
 .quick-contact p,
-.quick-contact a,
 .quick-contact .eyebrow {
+  color: #fff;
+}
+
+.quick-contact a:not(.button) {
   color: #fff;
 }
 
@@ -322,6 +314,9 @@ p {
 }
 
 .contact-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   padding: var(--space-lg);
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.18);
@@ -329,7 +324,11 @@ p {
 }
 
 .contact-card p {
-  margin-bottom: var(--space-sm);
+  margin-bottom: 0.65rem;
+}
+
+.contact-card p:last-child {
+  margin-bottom: 0;
 }
 
 .section-heading {
@@ -345,8 +344,7 @@ p {
 }
 
 .feature-grid,
-.stage-grid,
-.photo-grid {
+.stage-grid {
   display: grid;
   gap: var(--space-lg);
 }
@@ -359,9 +357,9 @@ p {
 .stage-card {
   overflow: hidden;
   background: var(--color-surface);
-  border: 1px solid var(--color-line);
+  border: 1px solid rgba(222, 212, 197, 0.84);
   border-radius: var(--radius-card);
-  box-shadow: 0 10px 30px rgba(54, 45, 35, 0.05);
+  box-shadow: 0 14px 32px rgba(54, 45, 35, 0.07);
 }
 
 .feature-card img {
@@ -497,6 +495,14 @@ dd {
   gap: var(--space-md);
 }
 
+.stage-card > img {
+  width: calc(100% + (var(--space-xl) * 2));
+  max-width: none;
+  height: 16rem;
+  margin: calc(var(--space-xl) * -1) calc(var(--space-xl) * -1) var(--space-sm);
+  object-fit: cover;
+}
+
 .stage-card .button {
   align-self: flex-start;
   margin-top: auto;
@@ -528,22 +534,24 @@ dd {
   margin-top: var(--space-xl);
 }
 
-.photo-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+.photo-carousel {
+  display: flex;
+  gap: var(--space-md);
+  overflow-x: auto;
+  padding: 0 0 var(--space-sm);
+  scroll-snap-type: x mandatory;
+  scrollbar-color: rgba(82, 104, 79, 0.62) rgba(222, 212, 197, 0.7);
 }
 
-.photo-grid figure {
-  margin: 0;
-}
-
-.photo-grid img {
-  aspect-ratio: 4 / 3;
-}
-
-.photo-grid figcaption {
-  margin-top: var(--space-xs);
-  color: var(--color-earth);
-  font-weight: 750;
+.photo-carousel img {
+  width: min(78vw, 42rem);
+  height: clamp(18rem, 42vw, 30rem);
+  flex: 0 0 auto;
+  object-fit: cover;
+  background: var(--color-stone);
+  border: 1px solid rgba(222, 212, 197, 0.8);
+  border-radius: var(--radius-card);
+  scroll-snap-align: start;
 }
 
 .contact-section {
@@ -614,6 +622,8 @@ dd {
   .site-header {
     position: static;
     align-items: flex-start;
+    padding-right: 1rem;
+    padding-left: 1rem;
   }
 
   .main-nav,
@@ -630,8 +640,7 @@ dd {
   }
 
   .two-columns,
-  .stage-grid,
-  .photo-grid {
+  .stage-grid {
     grid-template-columns: 1fr;
   }
 
@@ -663,8 +672,14 @@ dd {
     padding: var(--space-lg);
   }
 
-  .site-header {
-    width: min(100% - 1rem, var(--content-width));
+  .stage-card > img {
+    width: calc(100% + (var(--space-lg) * 2));
+    margin: calc(var(--space-lg) * -1) calc(var(--space-lg) * -1) var(--space-sm);
+  }
+
+  .brand-mark {
+    width: 4.8rem;
+    height: 3.9rem;
   }
 
   .button,

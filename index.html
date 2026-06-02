@@ -13,11 +13,7 @@
   <body>
     <header class="site-header">
       <a class="brand" href="#accueil" aria-label="Retour à l'accueil">
-        <span class="brand-mark" aria-hidden="true">PHE</span>
-        <span>
-          <span class="brand-name">Pôle Habitat Écologique</span>
-          <span class="brand-place">Baud, Morbihan</span>
-        </span>
+        <img class="brand-mark" src="assets/images/logo-phe-cropped.jpg" alt="Pôle Habitat Écologique">
       </a>
 
       <nav class="main-nav" aria-label="Navigation principale">
@@ -42,17 +38,12 @@
           <div class="button-row" aria-label="Actions principales">
             <a class="button button-primary" href="#conseil">Demander une intervention conseil</a>
             <a class="button button-secondary" href="#stages">Voir les stages</a>
-            <a class="button button-ghost" href="#contact">Contacter Marie</a>
           </div>
 
-          <ul class="contact-strip" aria-label="Coordonnées rapides">
-            <li><a href="tel:0663838074">06 63 83 80 74</a></li>
-            <li><a href="mailto:mfcargueray@gmail.com">mfcargueray@gmail.com</a></li>
-          </ul>
         </div>
 
         <figure class="hero-media">
-          <img src="assets/images/hero-bati-ancien.svg" alt="Maison ancienne en pierre et matériaux naturels">
+          <img src="assets/images/hero-stage-chaux-chanvre.jpg" alt="Mise en œuvre de matériaux biosourcés dans un bâtiment ancien">
           <figcaption>Conseil terrain et transmission pratique autour du bâti ancien.</figcaption>
         </figure>
       </section>
@@ -69,11 +60,6 @@
         <div class="contact-card">
           <p><strong>Téléphone</strong> <a href="tel:0663838074">06 63 83 80 74</a></p>
           <p><strong>Email</strong> <a href="mailto:mfcargueray@gmail.com">mfcargueray@gmail.com</a></p>
-          <p><strong>Lieu</strong> Baud, Morbihan</p>
-          <div class="button-row">
-            <a class="button button-primary" href="tel:0663838074">Appeler</a>
-            <a class="button button-secondary" href="mailto:mfcargueray@gmail.com">Envoyer un email</a>
-          </div>
         </div>
       </section>
 
@@ -85,7 +71,7 @@
 
         <div class="feature-grid two-columns">
           <article class="feature-card">
-            <img src="assets/images/conseil-chantier.svg" alt="Conseil sur chantier dans une maison en pierre">
+            <img src="assets/images/conseil-bati-ancien.jpg" alt="Mur ancien en pierre pendant un chantier de rénovation">
             <div class="card-body">
               <h3>Mission conseil sur chantier</h3>
               <p>
@@ -100,12 +86,11 @@
                 <li>Particuliers, agences immobilières, communes</li>
                 <li>Tarif : <strong>350 euros TTC</strong></li>
               </ul>
-              <a class="button button-secondary" href="#conseil">Découvrir la mission conseil</a>
             </div>
           </article>
 
           <article class="feature-card">
-            <img src="assets/images/stage-materiaux.svg" alt="Stage pratique autour des matériaux biosourcés">
+            <img src="assets/images/stage-enduit-argile.jpg" alt="Personnes appliquant un enduit pendant un stage pratique">
             <div class="card-body">
               <h3>Stages matériaux biosourcés</h3>
               <p>
@@ -120,7 +105,6 @@
                 <li>Matériaux et supports fournis</li>
                 <li>Réservation par contact direct</li>
               </ul>
-              <a class="button button-secondary" href="#stages">Voir les stages</a>
             </div>
           </article>
         </div>
@@ -230,6 +214,7 @@
         <!-- Pour ajouter un stage : copier une carte article.stage-card et modifier les champs. -->
         <div class="stage-grid">
           <article class="stage-card">
+            <img src="assets/images/stage-chaux-chanvre.jpg" alt="Stage de pose de panneaux isolants chaux-chanvre">
             <div class="stage-card-header">
               <p class="status-badge">Stage disponible</p>
               <h3>Stage panneaux isolants chaux-chanvre</h3>
@@ -252,6 +237,7 @@
           </article>
 
           <article class="stage-card">
+            <img src="assets/images/stage-enduit-argile.jpg" alt="Stage d'enduits décoratifs à l'argile">
             <div class="stage-card-header">
               <p class="status-badge">Stage disponible</p>
               <h3>Stage enduits décoratifs à l'argile</h3>
@@ -290,32 +276,13 @@
           </p>
         </div>
 
-        <!-- Remplacer les fichiers SVG par de vraies photos lorsque les images seront disponibles. -->
-        <div class="photo-grid">
-          <figure>
-            <img src="assets/images/photo-supports.svg" alt="Préparation des supports avant application">
-            <figcaption>Préparation des supports</figcaption>
-          </figure>
-          <figure>
-            <img src="assets/images/photo-chaux-chanvre.svg" alt="Pose de panneaux chaux-chanvre">
-            <figcaption>Pose de panneaux chaux-chanvre</figcaption>
-          </figure>
-          <figure>
-            <img src="assets/images/photo-argile.svg" alt="Application d'enduits décoratifs à l'argile">
-            <figcaption>Application d'enduits à l'argile</figcaption>
-          </figure>
-          <figure>
-            <img src="assets/images/photo-groupe.svg" alt="Travail en petit groupe pendant un stage">
-            <figcaption>Travail en petit groupe</figcaption>
-          </figure>
-          <figure>
-            <img src="assets/images/photo-materiaux.svg" alt="Échanges autour des matériaux naturels">
-            <figcaption>Échanges autour des matériaux</figcaption>
-          </figure>
-          <figure>
-            <img src="assets/images/photo-resultat.svg" alt="Résultat après mise en œuvre">
-            <figcaption>Résultat après mise en œuvre</figcaption>
-          </figure>
+        <div class="photo-carousel" aria-label="Photos des stages">
+          <img src="assets/images/galerie-preparation-supports.jpg" alt="Stage pratique dans un bâtiment ancien">
+          <img src="assets/images/galerie-pose-panneaux.jpg" alt="Participants devant des panneaux chaux-chanvre">
+          <img src="assets/images/galerie-enduit-argile.jpg" alt="Application d'un enduit intérieur">
+          <img src="assets/images/galerie-groupe-stage.jpg" alt="Groupe de participants en extérieur">
+          <img src="assets/images/galerie-materiaux.jpg" alt="Échanges autour des matériaux sur chantier">
+          <img src="assets/images/galerie-resultat.jpg" alt="Groupe de participants en intérieur">
         </div>
       </section>
 
