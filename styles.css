@@ -17,8 +17,8 @@
   --space-md: 1rem;
   --space-lg: 1.5rem;
   --space-xl: 2rem;
-  --space-2xl: 3rem;
-  --space-3xl: 4.5rem;
+  --space-2xl: 2.5rem;
+  --space-3xl: 3.25rem;
   --content-width: 1160px;
   --reading-width: 720px;
 }
@@ -142,7 +142,7 @@ p {
 .header-social {
   display: flex;
   align-items: center;
-  gap: 0.45rem;
+  gap: 0.5rem;
 }
 
 .header-social a,
@@ -151,25 +151,32 @@ p {
   place-items: center;
   width: 2.75rem;
   height: 2.75rem;
-  background: var(--color-surface);
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-small);
+  background: rgba(82, 104, 79, 0.08);
+  border: 1px solid rgba(82, 104, 79, 0.18);
+  border-radius: 999px;
   color: var(--color-earth);
   text-decoration: none;
-  transition: transform 180ms ease, border-color 180ms ease, color 180ms ease;
+  transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease, color 180ms ease;
 }
 
 .header-social a {
-  width: 2.35rem;
-  height: 2.35rem;
+  width: 2.5rem;
+  height: 2.5rem;
   background: transparent;
 }
 
 .header-social a:hover,
 .social-links a:hover {
-  border-color: rgba(82, 104, 79, 0.5);
+  background: var(--color-moss);
+  border-color: var(--color-moss);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.header-social a:hover {
+  background: rgba(82, 104, 79, 0.1);
+  border-color: rgba(82, 104, 79, 0.36);
   color: var(--color-moss);
-  transform: translateY(-1px);
 }
 
 .header-social svg,
@@ -204,6 +211,10 @@ p {
 
 .section-compact {
   padding: var(--space-2xl);
+}
+
+#stages {
+  padding-top: var(--space-2xl);
 }
 
 .hero {
@@ -379,7 +390,7 @@ p {
 
 .section-heading {
   max-width: var(--reading-width);
-  margin-bottom: var(--space-xl);
+  margin-bottom: var(--space-lg);
 }
 
 .section-heading.centered,
@@ -536,7 +547,7 @@ dd {
 }
 
 .stages-list-heading {
-  margin-top: var(--space-3xl);
+  margin-top: var(--space-2xl);
 }
 
 .stage-card {
@@ -671,14 +682,21 @@ dd {
 }
 
 .site-footer {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr auto;
-  align-items: start;
-  gap: var(--space-lg);
-  width: min(100% - 2rem, var(--content-width));
-  margin: var(--space-xl) auto var(--space-md);
-  padding: var(--space-xl) 0;
+  width: 100%;
+  margin-top: var(--space-lg);
+  padding: 1rem 0;
+  background: #f0ede6;
   border-top: 1px solid var(--color-line);
+  font-size: 0.9rem;
+}
+
+.footer-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-2xl);
+  width: min(100% - 2rem, var(--content-width));
+  margin: 0 auto;
 }
 
 .site-footer p {
@@ -688,24 +706,76 @@ dd {
 .footer-brand,
 .footer-contact {
   display: grid;
-  gap: 0.28rem;
+  gap: 0.12rem;
   color: var(--color-muted);
+}
+
+.footer-brand {
+  max-width: 34rem;
+}
+
+.footer-brand p {
+  max-width: 28rem;
+  color: var(--color-muted);
+  font-size: 0.88rem;
+}
+
+.footer-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.75rem;
+  margin-top: 0.55rem;
+  color: var(--color-muted);
+  line-height: 1.35;
+  font-size: 0.84rem;
+  font-weight: 500;
+}
+
+.footer-contact a {
+  color: var(--color-muted);
+  font-weight: 550;
+  text-decoration-color: rgba(109, 101, 90, 0.32);
+}
+
+.footer-contact span,
+.footer-contact a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.32rem;
+}
+
+.footer-contact svg {
+  width: 0.82rem;
+  height: 0.82rem;
+  flex: 0 0 auto;
+  fill: currentColor;
+  opacity: 0.62;
 }
 
 .footer-brand strong,
 .footer-social span {
-  color: var(--color-ink);
+  color: var(--color-earth);
+  font-size: 0.92rem;
+  font-weight: 750;
 }
 
 .footer-social {
   display: grid;
   justify-items: end;
-  gap: var(--space-sm);
+  gap: 0;
 }
 
 .social-links {
   display: flex;
   gap: var(--space-sm);
+}
+
+.social-links a {
+  width: 2.5rem;
+  height: 2.5rem;
+  min-width: 0;
+  padding: 0;
+  background: transparent;
 }
 
 @media (max-width: 900px) {
@@ -714,7 +784,7 @@ dd {
   .quick-contact,
   .split-section,
   .callout,
-  .site-footer {
+  .footer-inner {
     grid-template-columns: 1fr;
   }
 
@@ -761,7 +831,7 @@ dd {
 
   .section {
     width: min(100% - 1rem, var(--content-width));
-    padding: var(--space-2xl) 0;
+    padding: var(--space-xl) 0;
   }
 
   .section-compact,
