@@ -29,6 +29,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 6.5rem;
 }
 
 body {
@@ -78,8 +79,8 @@ h3 {
 }
 
 h1 {
-  max-width: 760px;
-  font-size: clamp(2.35rem, 6vw, 4.9rem);
+  max-width: 700px;
+  font-size: clamp(2.05rem, 4.4vw, 3.8rem);
   margin-bottom: var(--space-lg);
 }
 
@@ -331,6 +332,11 @@ p {
   margin-bottom: 0;
 }
 
+.quick-contact-button {
+  justify-self: center;
+  width: fit-content;
+}
+
 .section-heading {
   max-width: var(--reading-width);
   margin-bottom: var(--space-xl);
@@ -489,6 +495,10 @@ dd {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.stages-list-heading {
+  margin-top: var(--space-3xl);
+}
+
 .stage-card {
   display: flex;
   flex-direction: column;
@@ -535,26 +545,52 @@ dd {
 }
 
 .photo-carousel {
-  display: flex;
-  gap: var(--space-md);
-  overflow-x: auto;
-  padding: 0 0 var(--space-sm);
-  scroll-snap-type: x mandatory;
-  scrollbar-color: rgba(82, 104, 79, 0.62) rgba(222, 212, 197, 0.7);
+  overflow: hidden;
+  border: 1px solid rgba(222, 212, 197, 0.8);
+  border-radius: var(--radius-card);
+  background: var(--color-stone);
 }
 
-.photo-carousel img {
-  width: min(78vw, 42rem);
+.photo-track {
+  display: flex;
+  width: max-content;
+  animation: photo-marquee 72s linear infinite;
+}
+
+.photo-carousel:hover .photo-track {
+  animation-play-state: paused;
+}
+
+.photo-track img {
+  width: min(78vw, 34rem);
   height: clamp(18rem, 42vw, 30rem);
   flex: 0 0 auto;
   object-fit: cover;
-  background: var(--color-stone);
-  border: 1px solid rgba(222, 212, 197, 0.8);
-  border-radius: var(--radius-card);
-  scroll-snap-align: start;
+}
+
+@keyframes photo-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo-carousel {
+    overflow-x: auto;
+  }
+
+  .photo-track {
+    animation: none;
+  }
 }
 
 .contact-section {
+  padding-top: var(--space-2xl);
+  padding-bottom: var(--space-2xl);
   text-align: center;
 }
 
