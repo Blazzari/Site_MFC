@@ -84,6 +84,11 @@ h1 {
   margin-bottom: var(--space-lg);
 }
 
+.hero h1 {
+  max-width: 640px;
+  font-size: clamp(1.85rem, 3.6vw, 3.15rem);
+}
+
 h2 {
   font-size: clamp(1.75rem, 3vw, 2.75rem);
   margin-bottom: var(--space-md);
@@ -229,6 +234,10 @@ p {
 .hero-text {
   max-width: 680px;
   font-size: 1.16rem;
+}
+
+.hero-contact {
+  grid-column: 1 / -1;
 }
 
 .eyebrow {
@@ -451,6 +460,10 @@ p {
   grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1fr);
   gap: var(--space-xl);
   align-items: start;
+}
+
+.about-block + .about-block {
+  margin-top: var(--space-2xl);
 }
 
 .benefit-grid {
