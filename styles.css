@@ -347,22 +347,25 @@ p {
   grid-template-columns: minmax(0, 0.92fr) minmax(280px, 0.72fr);
   gap: var(--space-xl);
   align-items: center;
-  background: var(--color-earth);
+  background:
+    linear-gradient(135deg, rgba(82, 104, 79, 0.1), rgba(184, 107, 79, 0.08)),
+    var(--color-surface);
+  border: 1px solid rgba(82, 104, 79, 0.16);
   border-radius: var(--radius-card);
+  box-shadow: 0 16px 38px rgba(54, 45, 35, 0.07);
 }
 
 .quick-contact h2,
-.quick-contact p,
 .quick-contact .eyebrow {
-  color: #fff;
+  color: var(--color-ink);
 }
 
 .quick-contact a:not(.button) {
-  color: #fff;
+  color: var(--color-moss);
 }
 
 .quick-contact p {
-  opacity: 0.84;
+  color: var(--color-muted);
 }
 
 .contact-card {
@@ -386,6 +389,7 @@ p {
 .quick-contact-button {
   justify-self: center;
   width: fit-content;
+  box-shadow: 0 10px 22px rgba(82, 104, 79, 0.18);
 }
 
 .section-heading {
