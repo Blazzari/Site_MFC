@@ -87,8 +87,10 @@ h1 {
 }
 
 .hero h1 {
-  max-width: 640px;
-  font-size: clamp(1.85rem, 3.6vw, 3.15rem);
+  max-width: 780px;
+  font-size: clamp(1.9rem, 3.25vw, 3.05rem);
+  line-height: 1.18;
+  font-weight: 760;
 }
 
 h2 {
@@ -294,20 +296,24 @@ p {
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 0.92fr) minmax(360px, 0.9fr);
-  align-items: center;
-  gap: clamp(2rem, 5vw, 5rem);
-  min-height: calc(100vh - 6rem);
-  padding-top: var(--space-2xl);
+  grid-template-columns: 1fr;
+  gap: var(--space-2xl);
+  min-height: auto;
+  padding-top: clamp(3rem, 8vw, 6rem);
+  padding-bottom: var(--space-2xl);
+}
+
+.hero-content {
+  width: min(100%, 920px);
 }
 
 .hero-text {
-  max-width: 680px;
+  max-width: 760px;
   font-size: 1.16rem;
 }
 
 .hero-contact {
-  grid-column: 1 / -1;
+  width: min(100%, 72rem);
 }
 
 .eyebrow {
@@ -386,39 +392,12 @@ p {
   font-weight: 750;
 }
 
-.hero-media {
-  position: relative;
-  margin: 0;
-}
-
 .feature-card img {
   width: 100%;
   background: var(--color-stone);
   border: 1px solid rgba(222, 212, 197, 0.8);
   border-radius: var(--radius-card);
   object-fit: cover;
-}
-
-.hero-media img {
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  border-radius: var(--radius-card);
-  box-shadow: var(--shadow-soft);
-}
-
-.hero-media figcaption {
-  position: absolute;
-  right: var(--space-md);
-  bottom: var(--space-md);
-  max-width: 23rem;
-  margin: 0;
-  padding: 0.72rem 0.85rem;
-  background: rgba(38, 36, 31, 0.78);
-  border-radius: var(--radius-small);
-  color: #fff;
-  font-size: 0.94rem;
-  backdrop-filter: blur(10px);
 }
 
 .quick-contact {
@@ -643,14 +622,6 @@ dd {
   gap: var(--space-md);
 }
 
-.stage-card > img {
-  width: calc(100% + (var(--space-xl) * 2));
-  max-width: none;
-  height: 16rem;
-  margin: calc(var(--space-xl) * -1) calc(var(--space-xl) * -1) var(--space-sm);
-  object-fit: cover;
-}
-
 .stage-card .button {
   align-self: flex-start;
   margin-top: auto;
@@ -703,8 +674,14 @@ dd {
   margin-bottom: var(--space-xl);
 }
 
+
+
 .conseil-photo-track {
   animation-duration: 408s;
+}
+
+.stages-photo-track {
+  animation-duration: 660s;
 }
 
 .photo-track img {
@@ -910,10 +887,6 @@ dd {
     padding-top: var(--space-xl);
   }
 
-  .hero-media img {
-    aspect-ratio: 16 / 10;
-  }
-
   .two-columns,
   .stage-grid {
     grid-template-columns: 1fr;
@@ -993,11 +966,6 @@ dd {
     height: 2.35rem;
   }
 
-  .stage-card > img {
-    width: calc(100% + (var(--space-lg) * 2));
-    margin: calc(var(--space-lg) * -1) calc(var(--space-lg) * -1) var(--space-sm);
-  }
-
   .brand-mark {
     width: 4.2rem;
     height: 3.35rem;
@@ -1005,7 +973,7 @@ dd {
 
   .hero h1 {
     max-width: none;
-    font-size: clamp(1.75rem, 9vw, 2.5rem);
+    font-size: clamp(1.75rem, 8.4vw, 2.35rem);
   }
 
   h2 {
@@ -1014,14 +982,6 @@ dd {
 
   .hero-text {
     font-size: 1rem;
-  }
-
-  .hero-media figcaption {
-    position: static;
-    max-width: none;
-    margin-top: 0.45rem;
-    background: rgba(38, 36, 31, 0.88);
-    font-size: 0.88rem;
   }
 
   .button,
@@ -1045,10 +1005,6 @@ dd {
 
   .benefit-grid article {
     min-height: auto;
-  }
-
-  .stage-card > img {
-    height: 13rem;
   }
 
   .photo-track img {
@@ -1105,14 +1061,11 @@ dd {
   }
 
   .hero h1 {
-    font-size: clamp(1.65rem, 9vw, 2.15rem);
+    font-size: clamp(1.62rem, 8.2vw, 2.05rem);
   }
 
   h2 {
     font-size: clamp(1.45rem, 7vw, 1.9rem);
   }
 
-  .stage-card > img {
-    height: 11.5rem;
-  }
 }

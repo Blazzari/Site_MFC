@@ -1,21 +1,50 @@
 # Pôle Habitat Écologique
 
-Première version statique du site vitrine de Pôle Habitat Écologique.
+Site vitrine statique de Pôle Habitat Écologique.
 
-Le site est volontairement simple :
+Le site ne nécessite pas de serveur, de base de données ou de compilation. Il est prévu pour être publié directement avec GitHub Pages.
 
-- `index.html` contient les contenus et les sections de la page d'accueil ;
-- `styles.css` contient le design, les variables et les règles responsive ;
-- `assets/images/` contient les visuels temporaires à remplacer par de vraies photos.
+## Structure
+
+- `index.html` contient les contenus et les sections de la page.
+- `styles.css` contient le design et les règles responsive.
+- `scripts.js` gère les carrousels photos aléatoires.
+- `assets/images/` contient les images fixes du site.
+- `assets/photos/` contient les photos optimisées pour le web et les fichiers manifest.
+- `Photos/` contient les originaux locaux et reste ignoré par Git.
+
+## Carrousels photos
+
+Les deux carrousels utilisent la même logique :
+
+- les photos sont lues depuis `assets/photos/photos-manifest.json` ;
+- l'ordre change à chaque ouverture de page ;
+- le site affiche un échantillon de miniatures pour rester fluide, notamment sur mobile ;
+- le HTML garde quelques images de secours si le manifest ne peut pas être chargé en prévisualisation locale.
+
+Catégories utilisées :
+
+- `vitrine-conseil` pour le carrousel des missions de conseil ;
+- `galerie-stages-passes` pour le carrousel des stages pratiques.
+
+## Ajouter ou supprimer des photos
+
+1. Ajouter ou retirer les originaux dans `Photos/Vitrine conseil/` ou `Photos/Galerie stages passés/`.
+2. Régénérer les images web et le manifest :
+
+```powershell
+powershell -ExecutionPolicy Bypass -File tools/prepare-photos.ps1
+```
+
+3. Vérifier le site en local.
+4. Committer puis pousser les changements.
+
+Le dossier `Photos/` ne doit pas être poussé sur GitHub : seules les versions optimisées dans `assets/photos/` sont publiées.
 
 ## Modifier un stage
 
-Dans `index.html`, chercher la section `#stages`, copier une carte `article.stage-card`, puis modifier le titre, la date, le lieu, les tarifs et le texte.
-
-## Remplacer une image
-
-Déposer la nouvelle image dans `assets/images/`, puis modifier l'attribut `src` correspondant dans `index.html`.
+Dans `index.html`, chercher la section `#stages`, puis modifier les cartes `article.stage-card`.
 
 ## Publication GitHub Pages
 
-Ce site ne nécessite pas de compilation. GitHub Pages peut publier directement la branche principale avec `index.html` à la racine du dépôt.
+GitHub Pages peut publier directement la branche principale avec `index.html` à la racine du dépôt.
