@@ -876,7 +876,6 @@ dd {
   }
 
   .site-header {
-    position: static;
     display: grid;
     grid-template-columns: auto minmax(0, 1fr) auto;
     align-items: center;
@@ -927,7 +926,7 @@ dd {
   }
 
   html {
-    scroll-padding-top: 1rem;
+    scroll-padding-top: 5.25rem;
   }
 
   .section {
