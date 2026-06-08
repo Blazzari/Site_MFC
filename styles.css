@@ -699,6 +699,14 @@ dd {
   animation-play-state: paused;
 }
 
+.conseil-carousel {
+  margin-bottom: var(--space-xl);
+}
+
+.conseil-photo-track {
+  animation-duration: 408s;
+}
+
 .photo-track img {
   width: min(78vw, 34rem);
   height: clamp(18rem, 42vw, 30rem);
