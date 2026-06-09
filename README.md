@@ -19,7 +19,10 @@ Les deux carrousels utilisent la même logique :
 
 - les photos sont lues depuis `assets/photos/photos-manifest.json` ;
 - l'ordre change à chaque ouverture de page ;
-- le site affiche un échantillon de miniatures pour rester fluide, notamment sur mobile ;
+- le site affiche toutes les miniatures disponibles dans le manifest ;
+- les miniatures sont chargées progressivement par le navigateur avec `loading="lazy"` ;
+- le défilement automatique se met en pause au survol ou pendant une interaction tactile ;
+- les photos peuvent être parcourues manuellement au doigt, à la souris ou au trackpad ;
 - le HTML garde quelques images de secours si le manifest ne peut pas être chargé en prévisualisation locale.
 
 Catégories utilisées :

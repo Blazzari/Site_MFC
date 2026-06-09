@@ -654,20 +654,29 @@ dd {
 }
 
 .photo-carousel {
-  overflow: hidden;
+  position: relative;
+  overflow-x: auto;
+  overflow-y: hidden;
   border: 1px solid rgba(222, 212, 197, 0.8);
   border-radius: var(--radius-card);
   background: var(--color-stone);
+  overscroll-behavior-inline: contain;
+  scroll-padding-inline: 50%;
+  scrollbar-width: none;
+  touch-action: pan-x pan-y;
+}
+
+.photo-carousel::-webkit-scrollbar {
+  display: none;
 }
 
 .photo-track {
   display: flex;
   width: max-content;
-  animation: photo-marquee 72s linear infinite;
 }
 
-.photo-carousel:hover .photo-track {
-  animation-play-state: paused;
+.photo-carousel.is-user-paused {
+  scroll-snap-type: x mandatory;
 }
 
 .conseil-carousel {
@@ -676,38 +685,17 @@ dd {
 
 
 
-.conseil-photo-track {
-  animation-duration: 408s;
-}
-
-.stages-photo-track {
-  animation-duration: 660s;
-}
-
 .photo-track img {
   width: min(78vw, 34rem);
   height: clamp(18rem, 42vw, 30rem);
   flex: 0 0 auto;
   object-fit: cover;
-}
-
-@keyframes photo-marquee {
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(-50%);
-  }
+  scroll-snap-align: center;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .photo-carousel {
-    overflow-x: auto;
-  }
-
-  .photo-track {
-    animation: none;
+    scroll-snap-type: x mandatory;
   }
 }
 
