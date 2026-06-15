@@ -26,20 +26,29 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "LocalBusiness",
+        "@type": "ProfessionalService",
         "name": "Pôle Habitat Écologique",
         "url": "https://polehabitatecologique.com/",
         "logo": "https://polehabitatecologique.com/assets/images/logo-phe-seo.jpg",
         "image": "https://polehabitatecologique.com/assets/images/logo-phe-seo.jpg",
-        "email": "mfcargueray@gmail.com",
-        "telephone": "+33663838074",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "15 rue des Fontaines",
-          "postalCode": "56150",
-          "addressLocality": "Baud",
-          "addressCountry": "FR"
-        },
+        "description": "Conseil en rénovation du bâti ancien et stages pratiques autour des matériaux biosourcés.",
+        "areaServed": [
+          {
+            "@type": "AdministrativeArea",
+            "name": "Morbihan"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Bretagne"
+          }
+        ],
+        "knowsAbout": [
+          "rénovation du bâti ancien",
+          "bâtiments en pierre",
+          "matériaux biosourcés",
+          "enduits à l'argile",
+          "chaux-chanvre"
+        ],
         "sameAs": [
           "https://www.linkedin.com/company/pole-habitat-ecologique-morbihan/",
           "https://www.instagram.com/polehabitatecologiquebretagne/"
@@ -91,19 +100,24 @@
 
     <main>
       <section class="hero section" id="accueil">
-        <div class="hero-content">
-          <p class="eyebrow">Marie Cargueray - Baud, Morbihan</p>
-          <h1>Conseil en rénovation du bâti ancien et stages matériaux biosourcés en Bretagne</h1>
-          <p class="hero-text">
-            Le Pôle Habitat Écologique accompagne les projets de réhabilitation de bâtiments en pierre
-            et transmet les gestes de mise en œuvre de matériaux sains, adaptés au bâti ancien.
-          </p>
+        <div class="hero-main">
+          <div class="hero-content">
+            <p class="eyebrow">Marie Cargueray - Baud, Morbihan</p>
+            <h1>Conseil en rénovation du bâti ancien et stages matériaux biosourcés en Bretagne</h1>
+            <p class="hero-text">
+              Le Pôle Habitat Écologique accompagne les projets de réhabilitation de bâtiments en pierre
+              et transmet les gestes de mise en œuvre de matériaux sains, adaptés au bâti ancien.
+            </p>
 
-          <div class="button-row" aria-label="Actions principales">
-            <a class="button button-primary" href="#conseil">Missions de conseil</a>
-            <a class="button button-secondary" href="#stages">Stages pratiques</a>
+            <div class="button-row" aria-label="Actions principales">
+              <a class="button button-primary" href="#conseil">Missions de conseil</a>
+              <a class="button button-secondary" href="#stages">Stages pratiques</a>
+            </div>
           </div>
 
+          <figure class="hero-portrait">
+            <img src="assets/images/marie-cargueray.jpg" alt="Portrait de Marie Cargueray" loading="eager" decoding="async">
+          </figure>
         </div>
 
         <div class="quick-contact hero-contact section-compact" aria-labelledby="contact-rapide-title">
