@@ -675,17 +675,42 @@ dd {
   margin-top: var(--space-xl);
 }
 
-.photo-carousel {
+.carousel-shell {
   position: relative;
+}
+
+.photo-carousel {
   overflow-x: auto;
   overflow-y: hidden;
   border: 1px solid rgba(222, 212, 197, 0.8);
   border-radius: var(--radius-card);
   background: var(--color-stone);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.38);
   overscroll-behavior-inline: contain;
   scroll-padding-inline: 50%;
   scrollbar-width: none;
   touch-action: pan-x pan-y;
+}
+
+.carousel-shell::before,
+.carousel-shell::after {
+  content: "";
+  position: absolute;
+  top: 1px;
+  bottom: 1px;
+  z-index: 1;
+  width: clamp(2.5rem, 9vw, 6rem);
+  pointer-events: none;
+}
+
+.carousel-shell::before {
+  left: 1px;
+  background: linear-gradient(90deg, rgba(238, 231, 220, 0.78), rgba(238, 231, 220, 0));
+}
+
+.carousel-shell::after {
+  right: 1px;
+  background: linear-gradient(270deg, rgba(238, 231, 220, 0.78), rgba(238, 231, 220, 0));
 }
 
 .photo-carousel::-webkit-scrollbar {
@@ -697,8 +722,52 @@ dd {
   width: max-content;
 }
 
-.photo-carousel.is-user-paused {
-  scroll-snap-type: x mandatory;
+.carousel-control {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 2.65rem;
+  height: 2.65rem;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(82, 104, 79, 0.2);
+  border-radius: 999px;
+  color: var(--color-earth);
+  box-shadow: 0 10px 24px rgba(54, 45, 35, 0.12);
+  cursor: pointer;
+  transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease;
+}
+
+.carousel-control:hover {
+  transform: translateY(calc(-50% - 1px));
+  background: var(--color-surface);
+  border-color: rgba(82, 104, 79, 0.34);
+}
+
+.carousel-control span {
+  width: 0.58rem;
+  height: 0.58rem;
+  border-top: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+}
+
+.carousel-control-previous {
+  left: var(--space-sm);
+  transform: translateY(-50%);
+}
+
+.carousel-control-previous span {
+  transform: rotate(-135deg) translate(-1px, -1px);
+}
+
+.carousel-control-next {
+  right: var(--space-sm);
+  transform: translateY(-50%);
+}
+
+.carousel-control-next span {
+  transform: rotate(45deg) translate(-1px, 1px);
 }
 
 .conseil-carousel {
@@ -713,6 +782,10 @@ dd {
   flex: 0 0 auto;
   object-fit: cover;
   scroll-snap-align: center;
+}
+
+.photo-track img + img {
+  border-left: 1px solid rgba(255, 255, 255, 0.58);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1038,6 +1111,11 @@ dd {
   .photo-track img {
     width: 82vw;
     height: clamp(13rem, 64vw, 22rem);
+  }
+
+  .carousel-control {
+    width: 2.35rem;
+    height: 2.35rem;
   }
 
   .footer-inner {
