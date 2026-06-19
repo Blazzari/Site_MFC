@@ -127,6 +127,7 @@ p {
 .brand {
   display: inline-flex;
   align-items: center;
+  overflow: hidden;
   text-decoration: none;
 }
 
@@ -138,6 +139,8 @@ p {
   background: transparent;
   border-radius: 0;
   box-shadow: none;
+  transform: scale(1.34) translateY(-1%);
+  transform-origin: center;
 }
 
 .main-nav,
@@ -601,14 +604,49 @@ dd {
 }
 
 .notice {
+  position: relative;
   margin: var(--space-lg) 0 0;
-  padding: var(--space-md) var(--space-lg);
-  background: linear-gradient(135deg, rgba(238, 231, 220, 0.82), rgba(255, 255, 255, 0.72));
-  border: 1px solid rgba(222, 212, 197, 0.9);
-  border-left: 4px solid rgba(82, 104, 79, 0.36);
+  padding: var(--space-lg);
+  background:
+    linear-gradient(135deg, rgba(82, 104, 79, 0.1), rgba(255, 255, 255, 0.78)),
+    var(--color-surface);
+  border: 1px solid rgba(82, 104, 79, 0.22);
+  border-left: 0.42rem solid rgba(82, 104, 79, 0.72);
   border-radius: var(--radius-small);
   color: var(--color-earth);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.62);
+  font-size: 0.95rem;
+  font-weight: 620;
+  line-height: 1.72;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72), 0 12px 30px rgba(54, 45, 35, 0.05);
+  overflow: hidden;
+}
+
+.notice::before {
+  content: "";
+  position: absolute;
+  top: -35%;
+  bottom: -35%;
+  left: -0.42rem;
+  width: 0.42rem;
+  background: linear-gradient(
+    180deg,
+    rgba(82, 104, 79, 0.2),
+    rgba(82, 104, 79, 0.95),
+    rgba(184, 107, 79, 0.42)
+  );
+  animation: noticeAccentSweep 3.8s ease-in-out infinite;
+}
+
+@keyframes noticeAccentSweep {
+  0%,
+  44% {
+    transform: translateY(-38%);
+  }
+
+  78%,
+  100% {
+    transform: translateY(38%);
+  }
 }
 
 .callout {
@@ -641,9 +679,30 @@ dd {
 }
 
 .stage-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
+  overflow: hidden;
+}
+
+.stage-card--available {
+  border-color: rgba(82, 104, 79, 0.28);
+  box-shadow: 0 18px 42px rgba(54, 45, 35, 0.08), 0 0 0 0 rgba(82, 104, 79, 0.14);
+  animation: availableCardPulse 3.4s ease-out infinite;
+}
+
+.stage-card--available::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    linear-gradient(110deg, transparent 0 34%, rgba(82, 104, 79, 0.13) 48%, transparent 62% 100%);
+  opacity: 0.58;
+  transform: translateX(-115%);
+  animation: availableCardSweep 5.2s ease-in-out infinite;
 }
 
 .stage-card .button {
@@ -697,9 +756,45 @@ dd {
   }
 }
 
+@keyframes availableCardPulse {
+  0% {
+    border-color: rgba(82, 104, 79, 0.28);
+    box-shadow: 0 18px 42px rgba(54, 45, 35, 0.08), 0 0 0 0 rgba(82, 104, 79, 0.14);
+  }
+
+  70% {
+    border-color: rgba(82, 104, 79, 0.42);
+    box-shadow: 0 18px 42px rgba(54, 45, 35, 0.08), 0 0 0 0.5rem rgba(82, 104, 79, 0);
+  }
+
+  100% {
+    border-color: rgba(82, 104, 79, 0.28);
+    box-shadow: 0 18px 42px rgba(54, 45, 35, 0.08), 0 0 0 0 rgba(82, 104, 79, 0);
+  }
+}
+
+@keyframes availableCardSweep {
+  0%,
+  38% {
+    transform: translateX(-115%);
+  }
+
+  66%,
+  100% {
+    transform: translateX(115%);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .notice::before,
+  .stage-card--available,
+  .stage-card--available::after,
   .status-badge--available {
     animation: none;
+  }
+
+  .stage-card--available::after {
+    display: none;
   }
 }
 
@@ -1060,8 +1155,8 @@ dd {
 
   .site-header {
     grid-template-columns: auto 1fr auto;
-    gap: 0.45rem var(--space-sm);
-    padding: 0.5rem 0.75rem 0.65rem;
+    gap: 0.45rem 0.62rem;
+    padding: 0.45rem 0.7rem 0.55rem;
   }
 
   .main-nav {
@@ -1085,7 +1180,7 @@ dd {
     position: absolute;
     top: calc(100% + 0.35rem);
     right: calc((2.35rem * 2) * -1 - var(--space-sm));
-    left: calc((4.2rem + var(--space-sm)) * -1);
+    left: calc((4.8rem + 0.62rem) * -1);
     z-index: 20;
   }
 
@@ -1096,13 +1191,14 @@ dd {
 
   .header-social a,
   .social-links a {
-    width: 2.35rem;
-    height: 2.35rem;
+    width: 2.3rem;
+    height: 2.3rem;
   }
 
   .brand-mark {
-    width: 4.2rem;
-    height: 3.35rem;
+    width: 4.8rem;
+    height: 3.8rem;
+    transform: scale(1.42) translateY(-1%);
   }
 
   .hero h1 {
@@ -1179,8 +1275,9 @@ dd {
   }
 
   .brand-mark {
-    width: 3.75rem;
-    height: 3rem;
+    width: 4.55rem;
+    height: 3.6rem;
+    transform: scale(1.44) translateY(-1%);
   }
 
   .main-nav a {
@@ -1200,7 +1297,7 @@ dd {
 
   .mobile-menu[open] .mobile-nav {
     right: calc((2.35rem * 2) * -1 - var(--space-sm));
-    left: calc((3.75rem + var(--space-sm)) * -1);
+    left: calc((4.55rem + 0.62rem) * -1);
   }
 
   .hero h1 {

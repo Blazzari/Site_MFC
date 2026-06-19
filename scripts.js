@@ -269,6 +269,20 @@ const scrollToAdjacentPhoto = (carousel, direction, userInitiated = true) => {
   }
 };
 
+const getWheelNavigationDelta = (event) => {
+  const hasHorizontalIntent = Math.abs(event.deltaX) > Math.abs(event.deltaY);
+
+  if (hasHorizontalIntent) {
+    return event.deltaX;
+  }
+
+  if (event.shiftKey && Math.abs(event.deltaY) > 0) {
+    return event.deltaY;
+  }
+
+  return 0;
+};
+
 const getCarouselShell = (carousel) => {
   if (carousel.parentElement?.classList.contains("carousel-shell")) {
     return carousel.parentElement;
@@ -378,7 +392,7 @@ const enhanceCarousel = (track) => {
   carousel.addEventListener(
     "wheel",
     (event) => {
-      const horizontalDelta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
+      const horizontalDelta = getWheelNavigationDelta(event);
 
       if (Math.abs(horizontalDelta) < 1) {
         return;
@@ -483,7 +497,7 @@ const getSessionStatusClass = (status) => {
     return "status-badge status-badge--available";
   }
 
-  if (normalizedStatus.includes("pass")) {
+  if (normalizedStatus.includes("pass") || normalizedStatus.includes("organis")) {
     return "status-badge status-badge--past";
   }
 
@@ -497,7 +511,7 @@ const getSessionStatusPriority = (status) => {
     return 0;
   }
 
-  if (normalizedStatus.includes("pass")) {
+  if (normalizedStatus.includes("pass") || normalizedStatus.includes("organis")) {
     return 1;
   }
 
@@ -524,6 +538,10 @@ const sortWorkshopSessions = (sessions) =>
 const buildStageCard = (session) => {
   const article = document.createElement("article");
   article.className = "stage-card";
+
+  if (getSessionStatusPriority(session.status) === 0) {
+    article.classList.add("stage-card--available");
+  }
 
   const header = document.createElement("div");
   header.className = "stage-card-header";
