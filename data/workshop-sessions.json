@@ -1,0 +1,65 @@
+[
+  {
+    "id": "chaux-chanvre-baud-mars-2026",
+    "typeId": "panneaux-isolants-chaux-chanvre",
+    "status": "Stage passé",
+    "title": "Stage panneaux isolants chaux-chanvre",
+    "cardSummary": "Initiation à la pose de panneaux isolants en chaux-chanvre prêts à l'emploi : supports, pose, ajustements et jonctions.",
+    "startDate": "2026-03-13",
+    "date": "Vendredi 13 mars 2026",
+    "duration": "1 jour",
+    "location": "Baud",
+    "public": "Particuliers et professionnels",
+    "capacity": "5 personnes",
+    "pricingSummary": [
+      "Particuliers : 100 euros TTC",
+      "Professionnels : 200 euros TTC"
+    ],
+    "depositSummary": "50 euros particulier / 100 euros professionnel"
+  },
+  {
+    "id": "enduits-argile-baud-octobre-2026",
+    "typeId": "enduits-decoratifs-argile",
+    "status": "Stage disponible",
+    "title": "Stage enduits décoratifs à l'argile",
+    "cardSummary": "Journées d'initiation aux enduits de décoration intérieure à l'argile : supports, pigments et premières applications.",
+    "startDate": "2026-10-03",
+    "date": "Samedi 3 et dimanche 4 octobre 2026",
+    "duration": "2 jours",
+    "location": "Baud, Morbihan",
+    "public": "Particuliers et professionnels",
+    "instructor": "Gaëlle Damon, peintre en décor à Locoal-Mendon",
+    "capacity": "8 personnes",
+    "pricingSummary": [
+      "Particuliers : 180 euros TTC",
+      "Professionnels : 400 euros TTC"
+    ],
+    "depositSummary": "90 euros particulier / 200 euros professionnel",
+    "paymentTerms": "Solde à régler 15 jours avant le stage",
+    "program": [
+      {
+        "title": "Jour 1 - Théorie, supports et démarrage de la pose",
+        "items": [
+          "Exigences propres aux enduits de terre",
+          "Préparation des supports",
+          "Pigments",
+          "Solutions pour supports incompatibles",
+          "Démarrage des chantiers",
+          "Pose d'enduits monomasse"
+        ]
+      },
+      {
+        "title": "Jour 2 - Techniques de mise en œuvre",
+        "items": [
+          "Application d'enduits décoratifs monomasse",
+          "Application d'enduits fins à l'argile"
+        ]
+      }
+    ],
+    "practicalInfo": [
+      "Matériaux, supports et outils fournis",
+      "Vêtements de protection à prévoir",
+      "Repas possibles sur place mais non inclus"
+    ]
+  }
+]

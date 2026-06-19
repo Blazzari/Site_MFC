@@ -4,6 +4,9 @@ const TOUCH_RESUME_DELAY = 900;
 const WHEEL_RESUME_DELAY = 450;
 const CONTROL_RESUME_DELAY = 650;
 const ADVANCE_SETTLE_DELAY = 560;
+const WHEEL_JUMP_THRESHOLD = 36;
+const WHEEL_JUMP_COOLDOWN = 360;
+const TOUCH_JUMP_THRESHOLD = 42;
 
 const shufflePhotos = (photos) => {
   const shuffled = [...photos];
@@ -29,6 +32,23 @@ const buildPhoto = (photo, altText, isDuplicate) => {
   }
 
   return image;
+};
+
+const appendTextElement = (parent, tagName, text, className) => {
+  if (!text) {
+    return null;
+  }
+
+  const element = document.createElement(tagName);
+  element.textContent = text;
+
+  if (className) {
+    element.className = className;
+  }
+
+  parent.appendChild(element);
+
+  return element;
 };
 
 const pauseCarousel = (carousel) => {
@@ -219,6 +239,10 @@ const getAdjacentPhoto = (carousel, direction) => {
 };
 
 const scrollToAdjacentPhoto = (carousel, direction, userInitiated = true) => {
+  if (carousel.dataset.isAdvancing === "true") {
+    return;
+  }
+
   const target = getAdjacentPhoto(carousel, direction);
 
   if (!target) {
@@ -227,7 +251,7 @@ const scrollToAdjacentPhoto = (carousel, direction, userInitiated = true) => {
 
   window.clearTimeout(Number(carousel.dataset.autoTimer));
   carousel.dataset.isAdvancing = "true";
-  scrollToPhoto(carousel, target, userInitiated ? "smooth" : "auto");
+  scrollToPhoto(carousel, target, "auto");
 
   window.setTimeout(() => {
     delete carousel.dataset.isAdvancing;
@@ -326,13 +350,31 @@ const enhanceCarousel = (track) => {
   carousel.addEventListener("lostpointercapture", () => scheduleCarouselResume(carousel));
   carousel.addEventListener(
     "touchstart",
-    () => {
+    (event) => {
       window.clearTimeout(Number(carousel.dataset.autoTimer));
+      carousel.dataset.touchStartX = String(event.touches[0]?.clientX || 0);
       pauseCarousel(carousel);
     },
     { passive: true }
   );
-  carousel.addEventListener("touchend", () => scheduleCarouselSettle(carousel), { passive: true });
+  carousel.addEventListener(
+    "touchend",
+    (event) => {
+      const startX = Number(carousel.dataset.touchStartX || 0);
+      const endX = event.changedTouches[0]?.clientX || startX;
+      const deltaX = endX - startX;
+
+      delete carousel.dataset.touchStartX;
+
+      if (Math.abs(deltaX) >= TOUCH_JUMP_THRESHOLD) {
+        scrollToAdjacentPhoto(carousel, deltaX < 0 ? 1 : -1);
+        return;
+      }
+
+      scheduleCarouselResume(carousel);
+    },
+    { passive: true }
+  );
   carousel.addEventListener(
     "wheel",
     (event) => {
@@ -344,9 +386,22 @@ const enhanceCarousel = (track) => {
 
       event.preventDefault();
       pauseCarousel(carousel);
-      carousel.scrollLeft += horizontalDelta;
-      normalizeCarouselPosition(carousel);
-      scheduleCarouselSettle(carousel, WHEEL_RESUME_DELAY);
+      window.clearTimeout(Number(carousel.dataset.autoTimer));
+
+      const now = Date.now();
+      const lastJump = Number(carousel.dataset.lastWheelJump || 0);
+      const wheelIntent = Number(carousel.dataset.wheelIntent || 0) + horizontalDelta;
+
+      carousel.dataset.wheelIntent = String(wheelIntent);
+
+      if (Math.abs(wheelIntent) < WHEEL_JUMP_THRESHOLD || now - lastJump < WHEEL_JUMP_COOLDOWN) {
+        scheduleCarouselResume(carousel, WHEEL_RESUME_DELAY);
+        return;
+      }
+
+      carousel.dataset.lastWheelJump = String(now);
+      carousel.dataset.wheelIntent = "0";
+      scrollToAdjacentPhoto(carousel, wheelIntent > 0 ? 1 : -1);
     },
     { passive: false }
   );
@@ -355,7 +410,7 @@ const enhanceCarousel = (track) => {
     () => {
       normalizeCarouselPosition(carousel);
 
-      if (carousel.dataset.isSettling === "true") {
+      if (carousel.dataset.isSettling === "true" || carousel.dataset.isAdvancing === "true") {
         return;
       }
 
@@ -405,6 +460,139 @@ const renderCarousel = (track, photos) => {
   startAutoAdvance(track);
 };
 
+const buildStageDetail = (label, value) => {
+  if (!value) {
+    return null;
+  }
+
+  const wrapper = document.createElement("div");
+  const term = document.createElement("dt");
+  const description = document.createElement("dd");
+
+  term.textContent = label;
+  description.textContent = Array.isArray(value) ? value.join(" / ") : value;
+  wrapper.append(term, description);
+
+  return wrapper;
+};
+
+const getSessionStatusClass = (status) => {
+  const normalizedStatus = (status || "").toLowerCase();
+
+  if (normalizedStatus.includes("disponible")) {
+    return "status-badge status-badge--available";
+  }
+
+  if (normalizedStatus.includes("pass")) {
+    return "status-badge status-badge--past";
+  }
+
+  return "status-badge";
+};
+
+const getSessionStatusPriority = (status) => {
+  const normalizedStatus = (status || "").toLowerCase();
+
+  if (normalizedStatus.includes("disponible")) {
+    return 0;
+  }
+
+  if (normalizedStatus.includes("pass")) {
+    return 1;
+  }
+
+  return 2;
+};
+
+const getSessionStartTimestamp = (session) => {
+  const timestamp = Date.parse(session.startDate || "");
+  return Number.isNaN(timestamp) ? 0 : timestamp;
+};
+
+const sortWorkshopSessions = (sessions) =>
+  [...sessions].sort((firstSession, secondSession) => {
+    const statusDifference =
+      getSessionStatusPriority(firstSession.status) - getSessionStatusPriority(secondSession.status);
+
+    if (statusDifference !== 0) {
+      return statusDifference;
+    }
+
+    return getSessionStartTimestamp(secondSession) - getSessionStartTimestamp(firstSession);
+  });
+
+const buildStageCard = (session) => {
+  const article = document.createElement("article");
+  article.className = "stage-card";
+
+  const header = document.createElement("div");
+  header.className = "stage-card-header";
+  appendTextElement(header, "p", session.status || "Stage disponible", getSessionStatusClass(session.status));
+  appendTextElement(header, "h3", session.title);
+
+  article.appendChild(header);
+  appendTextElement(article, "p", session.cardSummary || session.subtitle);
+
+  const details = document.createElement("dl");
+  details.className = "stage-details";
+
+  [
+    ["Date", session.date],
+    ["Durée", session.duration],
+    ["Lieu", session.location],
+    ["Intervenant", session.instructor],
+    ["Public", session.public],
+    ["Places", session.capacity],
+    ["Tarif", session.pricingSummary],
+    ["Acompte", session.depositSummary],
+  ].forEach(([label, value]) => {
+    const detail = buildStageDetail(label, value);
+
+    if (detail) {
+      details.appendChild(detail);
+    }
+  });
+
+  article.appendChild(details);
+
+  const cta = document.createElement("a");
+  cta.className = "button button-primary";
+  cta.href = "#contact";
+  cta.textContent = "Contacter Marie pour réserver";
+  article.appendChild(cta);
+
+  return article;
+};
+
+const loadWorkshopSessions = async () => {
+  const grid = document.querySelector("[data-workshop-sessions]");
+
+  if (!grid) {
+    return;
+  }
+
+  try {
+    const response = await fetch("data/workshop-sessions.json");
+
+    if (!response.ok) {
+      throw new Error(`Sessions indisponibles (${response.status})`);
+    }
+
+    const sessions = await response.json();
+    const displaySessions = sortWorkshopSessions(
+      sessions.filter((session) => session.status !== "masqué")
+    ).slice(0, 2);
+
+    if (displaySessions.length === 0) {
+      return;
+    }
+
+    grid.replaceChildren(...displaySessions.map(buildStageCard));
+  } catch {
+    // Le HTML statique reste affiché si les données ne sont pas accessibles.
+  }
+};
+
 const loadPhotoCarousels = async () => {
   const tracks = [...document.querySelectorAll("[data-photo-category]")];
 
@@ -436,4 +624,7 @@ const loadPhotoCarousels = async () => {
   }
 };
 
-document.addEventListener("DOMContentLoaded", loadPhotoCarousels);
+document.addEventListener("DOMContentLoaded", () => {
+  loadPhotoCarousels();
+  loadWorkshopSessions();
+});

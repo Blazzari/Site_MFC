@@ -1,0 +1,60 @@
+[
+  {
+    "id": "panneaux-isolants-chaux-chanvre",
+    "title": "Stage panneaux isolants chaux-chanvre",
+    "shortTitle": "Panneaux isolants chaux-chanvre",
+    "category": "Isolation naturelle",
+    "theme": "Chaux-chanvre",
+    "level": "Initiation",
+    "intro": "Une initiation pratique à la pose de panneaux isolants chaux-chanvre adaptés à la rénovation du bâti ancien.",
+    "description": "Ce stage permet de comprendre les supports, les ajustements et les jonctions nécessaires pour poser des panneaux isolants biosourcés dans une rénovation cohérente.",
+    "objectives": [
+      "Comprendre la préparation des supports",
+      "Découvrir la pose de panneaux isolants chaux-chanvre",
+      "Identifier les ajustements techniques",
+      "Traiter les jonctions avec les embrasures"
+    ],
+    "standardProgram": [
+      "Préparation des supports",
+      "Pose des panneaux",
+      "Ajustements techniques",
+      "Jonctions avec les embrasures"
+    ],
+    "defaultPracticalInfo": [
+      "Matériaux et supports fournis",
+      "Outils fournis",
+      "Vêtements de protection à prévoir"
+    ]
+  },
+  {
+    "id": "enduits-decoratifs-argile",
+    "title": "Stage enduits décoratifs à l'argile",
+    "shortTitle": "Enduits décoratifs à l'argile",
+    "category": "Enduits naturels",
+    "theme": "Argile",
+    "level": "Initiation",
+    "intro": "Un usage de matériaux sains pour une décoration intérieure soignée et respectueuse de votre santé.",
+    "description": "Les enduits à l'argile sont adaptés à la rénovation comme aux réalisations contemporaines.",
+    "objectives": [
+      "Comprendre les exigences propres aux enduits de terre",
+      "Préparer les supports",
+      "Découvrir les pigments",
+      "Identifier les solutions possibles pour les supports incompatibles",
+      "S'initier à la pose d'enduits monomasse",
+      "Découvrir l'application d'enduits fins à l'argile"
+    ],
+    "standardProgram": [
+      "Préparation des supports",
+      "Présentation des pigments",
+      "Solutions pour supports incompatibles",
+      "Pose d'enduits décoratifs monomasse",
+      "Application d'enduits fins à l'argile"
+    ],
+    "defaultPracticalInfo": [
+      "Matériaux et supports fournis",
+      "Outils fournis",
+      "Vêtements de protection à prévoir",
+      "Repas possibles sur place mais non inclus"
+    ]
+  }
+]
