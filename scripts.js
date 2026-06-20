@@ -474,7 +474,7 @@ const renderCarousel = (track, photos) => {
   startAutoAdvance(track);
 };
 
-const buildStageDetail = (label, value) => {
+const buildStageDetail = (label, value, options = {}) => {
   if (!value) {
     return null;
   }
@@ -483,12 +483,58 @@ const buildStageDetail = (label, value) => {
   const term = document.createElement("dt");
   const description = document.createElement("dd");
 
+  if (options.variant) {
+    wrapper.classList.add(`stage-detail--${options.variant}`);
+  }
+
   term.textContent = label;
-  description.textContent = Array.isArray(value) ? value.join(" / ") : value;
+
+  if (Array.isArray(value) && options.variant === "money") {
+    const list = document.createElement("ul");
+    list.className = "detail-list detail-list--money";
+
+    value.forEach((item) => {
+      appendTextElement(list, "li", item);
+    });
+
+    description.appendChild(list);
+  } else if (Array.isArray(value) && options.variant === "stack") {
+    const stack = document.createElement("span");
+    stack.className = "detail-stack";
+
+    value.forEach((item) => {
+      appendTextElement(stack, "span", item);
+    });
+
+    description.appendChild(stack);
+  } else if (Array.isArray(value)) {
+    const list = document.createElement("ul");
+    list.className = "detail-list";
+
+    value.forEach((item) => {
+      appendTextElement(list, "li", item);
+    });
+
+    description.appendChild(list);
+  } else {
+    description.textContent = value;
+  }
+
   wrapper.append(term, description);
 
   return wrapper;
 };
+
+const STAGE_DETAIL_FIELDS = [
+  { label: "Date", key: "date" },
+  { label: "Durée", key: "duration" },
+  { label: "Lieu", key: "location" },
+  { label: "Animation", key: "instructor", variant: "stack" },
+  { label: "Public", key: "public" },
+  { label: "Places", key: "capacity" },
+  { label: "Tarifs", key: "pricingSummary", variant: "money" },
+  { label: "Acompte réservation", key: "depositSummary", variant: "money" },
+];
 
 const getSessionStatusClass = (status) => {
   const normalizedStatus = (status || "").toLowerCase();
@@ -554,17 +600,9 @@ const buildStageCard = (session) => {
   const details = document.createElement("dl");
   details.className = "stage-details";
 
-  [
-    ["Date", session.date],
-    ["Durée", session.duration],
-    ["Lieu", session.location],
-    ["Intervenant", session.instructor],
-    ["Public", session.public],
-    ["Places", session.capacity],
-    ["Tarif", session.pricingSummary],
-    ["Acompte", session.depositSummary],
-  ].forEach(([label, value]) => {
-    const detail = buildStageDetail(label, value);
+  STAGE_DETAIL_FIELDS.forEach(({ label, key, variant }) => {
+    const value = session[key];
+    const detail = buildStageDetail(label, value, { variant });
 
     if (detail) {
       details.appendChild(detail);

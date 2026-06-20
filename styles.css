@@ -286,7 +286,7 @@ p {
 .section {
   width: min(100% - 2rem, var(--content-width));
   margin: 0 auto;
-  padding: var(--space-3xl) 0;
+  padding: clamp(2.2rem, 5vw, var(--space-3xl)) 0;
 }
 
 .section-compact {
@@ -294,16 +294,16 @@ p {
 }
 
 #stages {
-  padding-top: var(--space-2xl);
+  padding-top: clamp(1.8rem, 4vw, var(--space-2xl));
 }
 
 .hero {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-2xl);
+  gap: clamp(1.35rem, 3vw, var(--space-2xl));
   min-height: auto;
-  padding-top: clamp(3rem, 8vw, 6rem);
-  padding-bottom: var(--space-2xl);
+  padding-top: clamp(1.9rem, 5vw, 3.4rem);
+  padding-bottom: clamp(1.8rem, 4vw, var(--space-2xl));
 }
 
 .hero-main {
@@ -338,7 +338,25 @@ p {
 }
 
 .hero-contact {
+  position: relative;
   width: min(100%, 72rem);
+  overflow: hidden;
+  border-color: rgba(82, 104, 79, 0.26);
+  box-shadow: 0 18px 42px rgba(54, 45, 35, 0.08), 0 0 0 0 rgba(82, 104, 79, 0.12);
+  animation: availableCardPulse 3.6s ease-out infinite;
+}
+
+.hero-contact::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    linear-gradient(110deg, transparent 0 36%, rgba(82, 104, 79, 0.11) 50%, transparent 64% 100%);
+  opacity: 0.52;
+  transform: translateX(-115%);
+  animation: availableCardSweep 5.8s ease-in-out infinite;
 }
 
 .eyebrow {
@@ -578,6 +596,7 @@ p {
   display: grid;
   gap: var(--space-md);
   margin: 0;
+  align-items: stretch;
 }
 
 .fact-grid {
@@ -586,9 +605,17 @@ p {
 
 .fact-grid div,
 .stage-details div {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 5.9rem;
   padding: var(--space-md);
   background: #f7f3ec;
   border-radius: var(--radius-small);
+}
+
+.stage-details div:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
 }
 
 dt {
@@ -601,6 +628,59 @@ dt {
 dd {
   margin: 0.25rem 0 0;
   color: var(--color-muted);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.detail-list {
+  display: grid;
+  gap: 0.3rem;
+  margin: 0.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.detail-list li {
+  position: relative;
+  padding-left: 0.9rem;
+}
+
+.detail-list li::before {
+  content: "";
+  position: absolute;
+  top: 0.68em;
+  left: 0;
+  width: 0.32rem;
+  height: 0.32rem;
+  background: rgba(82, 104, 79, 0.62);
+  border-radius: 999px;
+}
+
+.detail-stack {
+  display: grid;
+  gap: 0;
+  line-height: 1.2;
+}
+
+.detail-stack span + span {
+  color: var(--color-muted);
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+.detail-list--money {
+  gap: 0.26rem;
+}
+
+.detail-list--money li {
+  padding-left: 0.75rem;
+  font-size: 0.96rem;
+}
+
+.detail-list--money li::before {
+  width: 0.24rem;
+  height: 0.24rem;
+  background: rgba(82, 104, 79, 0.5);
 }
 
 .notice {
@@ -787,12 +867,15 @@ dd {
 
 @media (prefers-reduced-motion: reduce) {
   .notice::before,
+  .hero-contact,
+  .hero-contact::after,
   .stage-card--available,
   .stage-card--available::after,
   .status-badge--available {
     animation: none;
   }
 
+  .hero-contact::after,
   .stage-card--available::after {
     display: none;
   }
@@ -1100,7 +1183,7 @@ dd {
 
   .hero {
     min-height: auto;
-    padding-top: var(--space-xl);
+    padding-top: var(--space-lg);
   }
 
   .hero-main {
@@ -1141,7 +1224,7 @@ dd {
 
   .section {
     width: min(100% - 1rem, var(--content-width));
-    padding: var(--space-xl) 0;
+    padding: 1.65rem 0;
   }
 
   .section-compact,
@@ -1233,8 +1316,17 @@ dd {
     grid-template-columns: 1fr;
   }
 
+  .stage-details {
+    gap: 0.7rem;
+  }
+
+  .stage-details div {
+    min-height: 4.9rem;
+    padding: 0.85rem 0.95rem;
+  }
+
   .about-block + .about-block {
-    margin-top: var(--space-xl);
+    margin-top: var(--space-lg);
   }
 
   .benefit-grid article {
