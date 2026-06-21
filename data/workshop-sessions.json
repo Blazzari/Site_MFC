@@ -4,14 +4,15 @@
     "typeId": "panneaux-isolants-chaux-chanvre",
     "status": "Stage passé",
     "title": "Stage panneaux isolants chaux-chanvre",
-    "cardSummary": "Initiation à la pose de panneaux isolants en chaux-chanvre prêts à l'emploi : supports, pose, ajustements et jonctions.",
+    "cardSummary": "Journée d'initiation à la pose de panneaux isolants chaux-chanvre : supports, pose, ajustages et jonctions.",
     "startDate": "2026-03-13",
     "date": "13 mars 2026",
     "duration": "1 jour",
     "location": "Baud, Morbihan",
     "public": "Particuliers + professionnels",
     "instructor": [
-      "Marie Cargueray"
+      "Eric Martin",
+      "Artisan maçon"
     ],
     "capacity": "5 personnes",
     "pricingSummary": [
@@ -21,6 +22,31 @@
     "depositSummary": [
       "Particuliers : 50 €",
       "Professionnels : 100 €"
+    ],
+    "paymentTerms": "Solde à régler 15 jours avant le stage",
+    "program": [
+      {
+        "title": "Théorie et préparation",
+        "items": [
+          "Préparation des supports",
+          "Démarrage de la technique de pose",
+          "Présentation des panneaux multichanvre"
+        ]
+      },
+      {
+        "title": "Mise en œuvre pratique",
+        "items": [
+          "Pose des panneaux et ajustages techniques",
+          "Jonctions avec les embrasures de fenêtres",
+          "Pose de liège expansé"
+        ]
+      }
+    ],
+    "practicalInfo": [
+      "Matériaux et supports fournis",
+      "Outils fournis",
+      "Vêtements de protection à prévoir",
+      "Repas possibles sur place mais non inclus"
     ]
   },
   {
